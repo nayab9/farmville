@@ -20,14 +20,28 @@ public class Field {
         
         for (int i = 0; i < this.field_size; i++) {
             for (int j = 0; j < this.subfield_size; j++) {
-                //System.out.println(i + " " + j);
+                
                 if (this.fieldLayout[i][j] == null) {
+                    //System.out.println("Inserted " + newCrop.name() + " at i: " + i + " and j: " + j);
                     this.fieldLayout[i][j] = newCrop;
                     return_value = true;
-                    break;
+                    return return_value;
                 }
+                
+               // System.out.println("Not Inserted yet " + newCrop.name());
             }
-            if (return_value = true) {
+        }
+        
+        return return_value;
+    }
+    
+    public boolean insertCropNoSubfield(CropType newCrop) {
+        boolean return_value = false;
+        
+        for (int i = 0; i < this.field_size; i++) {
+            if (this.fieldLayout[i][0] == null) {
+                this.fieldLayout[i][0] = newCrop;
+                return_value = true;
                 break;
             }
         }
@@ -48,12 +62,14 @@ public class Field {
             for (int j = 0; j < this.subfield_size; j++) {
                 if (this.fieldLayout[i][j] != null) {
                     System.out.print(this.fieldLayout[i][j].name());
-                   // if (j+1 != subfield_size) {
+                    //System.out.println("i is: " + i + " j is: " + j);
+                    if (j+1 < subfield_size && this.fieldLayout[i][j+1] != null) {
                         System.out.print("+");  
-                   // }
+                    } else {
+                        System.out.print(" ");
+                    }
                 }
             }
-            System.out.println();
         }
     }
 }
