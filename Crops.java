@@ -18,7 +18,14 @@ public class Crops
 		//myField.printFieldSize();
 		
 		//combinations(crops);
-		//combination(Arrays.copyOfRange(crops, 0, field_number), 3);
+		
+		for (String item : (Arrays.copyOfRange(crops, 0, field_number)) ) {
+		    myField.insertCropNoSubfield(new CropType(item));
+		    myField.printFields();
+		    System.out.println();
+		    myField.clearCrops();
+		}
+		
 		permute2(Arrays.copyOfRange(crops, 0, field_number), 0);
 		
 		for (String[] item : myList) {
