@@ -11,8 +11,6 @@ public class Crops
 		
 		int field_number = Integer.parseInt(args[0]);
 		
-		CropType wheat = new CropType(crops[0]);
-		
 		Field myField = new Field(field_number);
 
 		String[] subList = Arrays.copyOfRange(crops, 0, field_number);
@@ -70,7 +68,7 @@ public class Crops
 		    myField.clearCrops();
 		}
 		
-		
+	}
 	
 	public static void permute2(String[] a, int k) 
     {
