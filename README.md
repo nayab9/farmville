@@ -1,23 +1,30 @@
-# farmville
+######Welcome to Crops, an application with a dream (of being farmville)!
 
-Welcome to Crops, a farmville aspiring application!
+This application is intended to provide all possible combinations of a field structure, given an input of Crops.
 
-This application is a farm plot generator. Given a field layout and a list of crops, all possible combinations are listed.listed
+This application was created and tested on Java version below:
+```
+java -version
+java version "1.7.0_95"
+```
 
-The usage instructions are as follows:
+Usage instructions are as follows:
 
-> javac *.java
-> java Crops -N <number> 
+```
+javac *.java
+java Crops -N 'number'
+```
 
-<number> represents the chosen number of fields to use for arranging the crops. 
+Where 'number' represents the chosen number of fields to use for arranging the crops. 
 
 Restrictions: The chosen number of fields must be less than or equal to the specified list of Crops. 
 
-A default hardcoded list of 7 Crops is baked into the application. 
+A default hardcoded list of 7 Crops is baked into the application: {"Wheat", "Corn", "Barley", "Rye", "Oats", "Soybeans", "Canola"}.
 
-Usage example with output (using default input of {"Wheat", "Corn", "Barley", "Rye", "Oats", "Soybeans", "Canola"}):
+Usage example with output (using default input):
 
-> java Crops -N 3
+```
+java Crops -N 3
 
 Wheat 
 Corn 
@@ -43,8 +50,10 @@ Corn+Wheat Barley
 Corn+Barley Wheat 
 Barley+Corn Wheat 
 Barley+Wheat Corn 
-
-BETA Feature:
+```
+**BETA Feature:**
 
 A file can be passed into the application to specify the Crops available for use. 
 The file must be a line delimited text file, containing one Crop (1 word) per line. 
+
+A sample file is provided in the repository as: ```"CropList.txt"```
