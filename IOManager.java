@@ -35,12 +35,14 @@
             for (int i = 0; i < this.myArgs.length; i++) {
                 if (this.myArgs[i].equals("-n")) {
                     this.numberOfFields = Integer.parseInt(this.myArgs[i+1]);
-                    if (this.fullCropList != null) {
+                    if (this.fullCropList != null && this.numberOfFields <= this.fullCropList.length) {
                         this.myCropList = Arrays.copyOfRange(this.fullCropList, 0, numberOfFields);
-                    } else {
+                        returnValue = true;
+                    } else if (this.numberOfFields <= this.crops.length) {
                         this.myCropList = Arrays.copyOfRange(crops, 0, numberOfFields);
+                        returnValue = true;
                     }
-                    returnValue = true;
+                    
                 } else if (this.myArgs[i].equals("-f")) {
                    readFromFile(this.myArgs[i+1]);
                 }
@@ -48,7 +50,8 @@
 
         }
         if (!returnValue) {
-            System.out.println("Please specify at least the number of fields wanted: -n <number>");
+            System.out.println("Please specify the number of fields wanted: -n <number>");
+            System.out.println("This number must be less than or equal to the available Crops.");
         }
         return returnValue;
      }
