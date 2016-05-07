@@ -19,10 +19,36 @@ public class Crops
 		
 		//combinations(crops);
 		
+		String[] subList = Arrays.copyOfRange(crops, 0, field_number);
+		
 		for (String item : (Arrays.copyOfRange(crops, 0, field_number)) ) {
 		    myField.insertCropNoSubfield(new CropType(item));
 		    myField.printFields();
 		    System.out.println();
+		    myField.clearCrops();
+		}
+		
+	    for (int i = 0; i < subList.length; i++) {
+		    for (int j = 0; j < subList.length; j++) {
+		        if (!subList[i].equals(subList[j])) {
+    		        myField.insertCropNoSubfield(new CropType(subList[i]));
+    		        myField.insertCropNoSubfield(new CropType(subList[j]));
+    		        myField.printFields();
+    		        System.out.println();
+    		        myField.clearCrops();
+		        }
+		    }
+		    myField.clearCrops();
+		}
+		
+	    for (int i = 0; i < subList.length; i++) {
+		    for (int j = i+1; j < subList.length; j++) {
+		        myField.insertCrop(new CropType(subList[i]));
+		        myField.insertCrop(new CropType(subList[j]));
+		        myField.printFields();
+		        System.out.println();
+		        myField.clearCrops();
+		    }
 		    myField.clearCrops();
 		}
 		
