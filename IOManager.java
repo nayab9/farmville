@@ -9,11 +9,14 @@
  */
  
  import java.util.*;
+ import java.io.*;
  
  class IOManager {
      private int numberOfFields;
      private String[] myCropList;
      private String[] myArgs;
+     
+     private String[] fullCropList;
      
      // Hardcoded default backup, in case a file is not specified
      private final String[] crops = {"Wheat", "Corn", "Barley", "Rye", "Oats", "Soybeans", "Canola"};
@@ -32,8 +35,14 @@
             for (int i = 0; i < this.myArgs.length; i++) {
                 if (this.myArgs[i].equals("-n")) {
                     this.numberOfFields = Integer.parseInt(this.myArgs[i+1]);
-                    this.myCropList = Arrays.copyOfRange(crops, 0, numberOfFields);
+                    if (this.fullCropList != null) {
+                        this.myCropList = Arrays.copyOfRange(this.fullCropList, 0, numberOfFields);
+                    } else {
+                        this.myCropList = Arrays.copyOfRange(crops, 0, numberOfFields);
+                    }
                     returnValue = true;
+                } else if (this.myArgs[i].equals("-f")) {
+                   readFromFile(this.myArgs[i+1]);
                 }
             }
 
@@ -46,5 +55,20 @@
      
      public String[] getCropList() {
          return this.myCropList;
+     }
+     
+     private void readFromFile(String filename) {
+        try {
+            Scanner in = new Scanner(new FileReader(filename));
+            List<String> crops = new ArrayList<String>();
+            
+            while (in.hasNextLine()) {
+                crops.add(in.next());
+            }
+            
+            this.fullCropList = crops.toArray(new String[0]);
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found.");
+        }
      }
  }

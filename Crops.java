@@ -3,7 +3,7 @@
  * 
  * This class will start the crop simulation,
  * It will read inputs passed into the command line,
- * and delegate tasks accordingly.
+ * initialize the crop manager, and begin the simulation.
  */
  
 public class Crops {
