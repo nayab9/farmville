@@ -1,6 +1,6 @@
 ######Welcome to Crops, an application with a dream (of being farmville)!
 
-This application is intended to provide all possible combinations of a field arragenment of Crops, given a field size and a specific input of Crops.
+This application is intended to provide all possible combinations of a field arrangement of Crops, given a field size and a specific input of Crops.
 
 This application was created and tested on Java version below:
 ```
