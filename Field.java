@@ -41,6 +41,7 @@ public class Field {
         for (int i = 0; i < this.field_size; i++) {
             if (this.fieldLayout[i][0] == null) {
                 this.fieldLayout[i][0] = newCrop;
+                this.fieldLayout[i][1] = new CropType("Reserved");
                 return_value = true;
                 break;
             }
@@ -60,10 +61,10 @@ public class Field {
     public void printFields() {
         for (int i = 0; i < this.field_size; i++) {
             for (int j = 0; j < this.subfield_size; j++) {
-                if (this.fieldLayout[i][j] != null) {
+                if (this.fieldLayout[i][j] != null && this.fieldLayout[i][j].name() != "Reserved") {
                     System.out.print(this.fieldLayout[i][j].name());
                     //System.out.println("i is: " + i + " j is: " + j);
-                    if (j+1 < subfield_size && this.fieldLayout[i][j+1] != null) {
+                    if (j+1 < subfield_size && this.fieldLayout[i][j+1] != null && this.fieldLayout[i][j+1].name() != "Reserved") {
                         System.out.print("+");  
                     } else {
                         System.out.print(" ");

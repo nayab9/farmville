@@ -14,7 +14,7 @@ public class Crops
 		Field myField = new Field(field_number);
 
 		String[] subList = Arrays.copyOfRange(crops, 0, field_number);
-		
+
 		// Simple case, just plant eat crop once
 		for (String item : (Arrays.copyOfRange(crops, 0, field_number)) ) {
 		    myField.insertCropNoSubfield(new CropType(item));
@@ -77,6 +77,25 @@ public class Crops
     		    myField.printFields();
     		    System.out.println();
     		    myField.clearCrops();
+    		}
+    		
+    		if (index > 3) {
+    		    for (String[] item: myList) {
+    		        for (int i = 0; i < item.length-1; i++) {
+    		            //int counter = 0;
+        		        for (int j = 0; j < item.length; j++) {
+        		            if (j == i || j == i+1) {
+        		                myField.insertCrop(new CropType(item[j]));
+        		                //counter++;
+        		            } else if (j != i || j != i+1) {
+        		                myField.insertCropNoSubfield(new CropType(item[j]));
+        		            }
+        		        }
+        		        myField.printFields();
+        		        System.out.println();
+        		        myField.clearCrops();
+    		        }
+    		    }
     		}
     		
     		myList.clear();
