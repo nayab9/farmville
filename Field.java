@@ -1,9 +1,19 @@
+/** 
+ * The Field class manages the farmers field.
+ * 
+ * Initialization, insertion, removal of CropTypes
+ * within the field is controlled by this class.
+ */
+
 public class Field {
-    //private bool isPlanted;
-    //private String name;
+
+    // Subfield size is hardcoded, no reason we can't
+    // Expand this in the future, though. 
+    // Unfortunately, deadlines are always looming...
     private final int subfield_size = 2;
     private int field_size = 0;
     
+    // Our field grid
     private CropType[][] fieldLayout;
     
     public Field(int size) {
@@ -15,6 +25,7 @@ public class Field {
         System.out.println("Field size: " + field_size + " / subfield size: " + subfield_size);
     }
     
+    // Insert a crop into the field, anywhere a spot is available
     public boolean insertCrop(CropType newCrop) {
         boolean return_value = false;
         
@@ -22,19 +33,18 @@ public class Field {
             for (int j = 0; j < this.subfield_size; j++) {
                 
                 if (this.fieldLayout[i][j] == null) {
-                    //System.out.println("Inserted " + newCrop.name() + " at i: " + i + " and j: " + j);
                     this.fieldLayout[i][j] = newCrop;
                     return_value = true;
                     return return_value;
                 }
-                
-               // System.out.println("Not Inserted yet " + newCrop.name());
             }
         }
         
         return return_value;
     }
     
+    // Insert a crop into the field, anywhere available, 
+    // Except for subfields, these are 'reserved'
     public boolean insertCropNoSubfield(CropType newCrop) {
         boolean return_value = false;
         
@@ -63,7 +73,6 @@ public class Field {
             for (int j = 0; j < this.subfield_size; j++) {
                 if (this.fieldLayout[i][j] != null && this.fieldLayout[i][j].name() != "Reserved") {
                     System.out.print(this.fieldLayout[i][j].name());
-                    //System.out.println("i is: " + i + " j is: " + j);
                     if (j+1 < subfield_size && this.fieldLayout[i][j+1] != null && this.fieldLayout[i][j+1].name() != "Reserved") {
                         System.out.print("+");  
                     } else {
