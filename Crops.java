@@ -15,6 +15,7 @@ public class Crops
 
 		String[] subList = Arrays.copyOfRange(crops, 0, field_number);
 		
+		// Simple case, just plant eat crop once
 		for (String item : (Arrays.copyOfRange(crops, 0, field_number)) ) {
 		    myField.insertCropNoSubfield(new CropType(item));
 		    myField.printFields();
@@ -22,6 +23,7 @@ public class Crops
 		    myField.clearCrops();
 		}
 		
+		// Case of two
 	    for (int i = 0; i < subList.length; i++) {
 		    for (int j = 0; j < subList.length; j++) {
 		        if (!subList[i].equals(subList[j])) {
@@ -46,27 +48,40 @@ public class Crops
 		    myField.clearCrops();
 		}
 		
-		permute2(Arrays.copyOfRange(crops, 0, field_number), 0);
+		//permute2(Arrays.copyOfRange(crops, 0, field_number), 0);
 		
-		for (String[] item : myList) {
-		    //System.out.println(item[0] + " " + item[1] + " " + item[2]);
-		    for (int i = 0; i < item.length; i++) {
-		       myField.insertCropNoSubfield(new CropType(item[i])); 
-		    }
-		    myField.printFields();
-		    System.out.println();
-		    myField.clearCrops();
+		// Need an outer loop here - starting from all items permutation if >= 3
+		// then count down, and grab the first N crops from the permutation myList
+		// They will cover the gaunlet for per field Crops
+		// The only screwed up part is potentially the insertCrop into subfields...
+		
+		for (int index = 3; index <= field_number; index++) {
+		    
+		    permute2(Arrays.copyOfRange(crops, 0, index), 0);
+		    
+    		for (String[] item : myList) {
+    		    //System.out.println(item[0] + " " + item[1] + " " + item[2]);
+    		    for (int i = 0; i < item.length; i++) {
+    		       myField.insertCropNoSubfield(new CropType(item[i])); 
+    		    }
+    		    myField.printFields();
+    		    System.out.println();
+    		    myField.clearCrops();
+    		}
+    		
+    		for (String[] item : myList) {
+    		    //System.out.println(item[0] + " " + item[1] + " " + item[2]);
+    		    for (int i = 0; i < item.length; i++) {
+    		       myField.insertCrop(new CropType(item[i])); 
+    		    }
+    		    myField.printFields();
+    		    System.out.println();
+    		    myField.clearCrops();
+    		}
+    		
+    		myList.clear();
 		}
 		
-		for (String[] item : myList) {
-		    //System.out.println(item[0] + " " + item[1] + " " + item[2]);
-		    for (int i = 0; i < item.length; i++) {
-		       myField.insertCrop(new CropType(item[i])); 
-		    }
-		    myField.printFields();
-		    System.out.println();
-		    myField.clearCrops();
-		}
 		
 	}
 	
