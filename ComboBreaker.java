@@ -10,39 +10,34 @@ import java.util.*;
 
 public class ComboBreaker {
     private ArrayList<String[]> myList = new ArrayList<String[]>();
-    private int k = 0;
+    private int element = 0;
 
     public ComboBreaker(String[] list) {
-        comboFinder(list, this.k);
+        comboFinder(list, this.element);
     }
     
-    public void comboFinder(String[] a, int k) 
-    {
-        if (k == a.length) 
-        {
-            String[] temp = new String[a.length];
-            for (int i = 0; i < a.length; i++) 
-            {
-                //System.out.print(" [" + a[i] + "] ");
-                temp[i] = a[i];
+    // This function will recursively generate a list of possible
+    // combinations of a given string array
+    public void comboFinder(String[] cropList, int element) {
+        if (element == cropList.length) {
+            String[] temp = new String[cropList.length];
+            for (int i = 0; i < cropList.length; i++) {
+                temp[i] = cropList[i];
                 
             }
             myList.add(temp);
-            //System.out.println();
         } 
-        else 
-        {
-            for (int i = k; i < a.length; i++) 
-            {
-                String temp = a[k];
-                a[k] = a[i];
-                a[i] = temp;
+        else {
+            for (int i = element; i < cropList.length; i++) {
+                String temp = cropList[element];
+                cropList[element] = cropList[i];
+                cropList[i] = temp;
  
-                comboFinder(a, k + 1);
+                comboFinder(cropList, element + 1);
  
-                temp = a[k];
-                a[k] = a[i];
-                a[i] = temp;
+                temp = cropList[element];
+                cropList[element] = cropList[i];
+                cropList[i] = temp;
             }
         }
     }
